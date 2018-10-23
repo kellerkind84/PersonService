@@ -11,7 +11,7 @@ via tomcat:
 
 ## Requirements
 
-The application requires a running MySQL instance. It can be configured in application.yml. The current standard expects:
+The application requires a running MySQL instance, that can be configured in the application.yml. The current standard expects:
 
 * port: 3306
 * username: root
