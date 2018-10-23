@@ -3,7 +3,8 @@
 ## Starting the application
 The application can be started in a couple of different ways:
 
-via maven: mvn spring-boot:run
+via maven: 
+* mvn spring-boot:run
 
 via tomcat:
 * build war: mvn clean package
