@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,7 +18,6 @@ PersonEntity {
     @Id
     private Long id;
 
-    @NonNull
     @Length(min = 3, max = 20)
     private String name;
 }

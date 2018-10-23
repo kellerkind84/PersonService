@@ -4,6 +4,7 @@ import com.example.restservice.profiling.LogExecutionTime;
 import com.example.restservice.entity.PersonEntity;
 import com.example.restservice.model.RestResult;
 import com.example.restservice.repository.PersonRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,15 @@ public class CrudServiceImpl implements CrudService {
     @Override
     @LogExecutionTime
     public RestResult create(PersonEntity person) {
-        PersonEntity returnPerson = personRepository.save(person);
+        PersonEntity returnPerson = null;
+        try {
+            returnPerson = personRepository.save(person);
+        } catch (Exception e) {
+            return RestResult.builder()
+                    .success(false)
+                    .successMessage(e.getMessage())
+                    .build();
+        }
         return RestResult.builder()
                 .success(true)
                 .successMessage("created person!")

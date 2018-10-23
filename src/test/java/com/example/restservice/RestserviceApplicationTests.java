@@ -29,13 +29,32 @@ public class RestserviceApplicationTests {
     private PersonEntity updateUser = new PersonEntity(7674350L, "updated test user");
 
     @Test
-    public void savePerson() {
+    public void createPersonTest() {
         RestResult restResult = restTemplate.postForObject(URL + "create", testUser, RestResult.class);
 
         assertNotNull(restResult);
         assertTrue(restResult.getSuccess());
 
         personRepository.deleteById(testUser.getId());
+    }
+
+    @Test
+    public void constraintTest() {
+        PersonEntity constraintUser = new PersonEntity(34759L, "tu");
+
+        RestResult restResult = restTemplate.postForObject(URL + "create", constraintUser, RestResult.class);
+
+        assertNotNull(restResult);
+        assertFalse(restResult.getSuccess());
+        System.out.println(restResult.getSuccessMessage());
+
+        constraintUser = new PersonEntity(34759L, "");
+
+        restResult = restTemplate.postForObject(URL + "create", constraintUser, RestResult.class);
+
+        assertNotNull(restResult);
+        assertFalse(restResult.getSuccess());
+        System.out.println(restResult.getSuccessMessage());
     }
 
     @Test
