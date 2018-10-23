@@ -36,6 +36,8 @@ public class RestserviceApplicationTests {
         assertTrue(restResult.getSuccess());
 
         personRepository.deleteById(testUser.getId());
+
+        System.out.println("createPersonTest was successful");
     }
 
     @Test
@@ -55,6 +57,8 @@ public class RestserviceApplicationTests {
         assertNotNull(restResult);
         assertFalse(restResult.getSuccess());
         System.out.println(restResult.getSuccessMessage());
+
+        System.out.println("constraintTest was successful");
     }
 
     @Test
@@ -68,6 +72,8 @@ public class RestserviceApplicationTests {
         assertEquals(restResult.getPerson(), testUser);
 
         personRepository.delete(testUser);
+
+        System.out.println("readPersonTest was successful");
     }
 
     @Test
@@ -82,6 +88,7 @@ public class RestserviceApplicationTests {
 
         personRepository.delete(testUser);
 
+        System.out.println("updatePersonTest was successful");
     }
 
     @Test
@@ -102,5 +109,7 @@ public class RestserviceApplicationTests {
 
         byId = personRepository.findById(testUser.getId());
         assertFalse(byId.isPresent());
+
+        System.out.println("deletePersonTest was successful");
     }
 }
